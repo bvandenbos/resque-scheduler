@@ -55,6 +55,7 @@ module Resque
 
           # Now start the scheduling part of the loop.
           loop do
+            Resque.redis.set('resque-scheduler-health', Time.now.to_i)
             begin
               # Check on changes to master/child
               @am_master = master?
@@ -79,6 +80,8 @@ module Resque
 
         rescue Interrupt
           log 'Exiting'
+        ensure
+          Resque.redis.del('resque-scheduler-health')
         end
       end
 
