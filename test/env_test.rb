@@ -45,6 +45,12 @@ context 'Env' do
     assert_equal(false, Resque::Scheduler.dynamic)
   end
 
+  test 'quiet is false if not provided' do
+    env = new_env
+    env.setup
+    assert_equal(false, Resque::Scheduler.quiet)
+  end
+
   test 'keep set environment if no option given' do
     Resque::Scheduler.configure { |c| c.env = 'development' }
     env = new_env
