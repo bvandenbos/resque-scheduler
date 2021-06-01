@@ -407,9 +407,6 @@ Resque.set_schedule(name, config)
 
 #### Time zones
 
-Note that if you use the cron syntax, this will be interpreted as in the server time zone
-rather than the `config.time_zone` specified in Rails.
-
 You can explicitly specify the time zone that rufus-scheduler will use:
 
 ```yaml
